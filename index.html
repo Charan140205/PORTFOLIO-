@@ -694,14 +694,17 @@
         <h2 class="section-title"><i class="fa-solid fa-envelope"></i>Send a Message</h2>
         <div class="contact-form">
             <form id="contactForm" action="https://formsubmit.co/koonapallicharan7898@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="New message from portfolio contact form">
+                <input type="hidden" name="_subject" id="_subject" value="New message from portfolio contact form">
                 <input type="hidden" name="_captcha" value="false">
                 
                 <label for="name">Name</label>
                 <input type="text" id="name" name="Name" placeholder="Your name" required>
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="Email" placeholder="Your email" required>
+                <input type="email" id="email" name="_replyto" placeholder="Your email" required>
+
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="Subject" placeholder="Subject" required>
 
                 <label for="message">Message</label>
                 <textarea id="message" name="Message" placeholder="Write your message here" required></textarea>
@@ -733,20 +736,23 @@
 
             // 2. Intercept submission to ensure fallback works flawlessly
             contactForm.addEventListener('submit', function(event) {
+                const subjectField = document.getElementById('subject').value || 'Portfolio Contact Form Message';
+                const replyToEmail = document.getElementById('email').value;
+                document.getElementById('_subject').value = subjectField;
+
                 if (window.location.protocol === 'file:') {
                     event.preventDefault(); // Stop form from trying to post to formsubmit.co over file system
                     
                     const name = encodeURIComponent(document.getElementById('name').value);
-                    const email = encodeURIComponent(document.getElementById('email').value);
+                    const email = encodeURIComponent(replyToEmail);
+                    const subject = encodeURIComponent(subjectField);
                     const message = encodeURIComponent(document.getElementById('message').value);
-                    
-                    const subject = encodeURIComponent('Portfolio Contact Form Message');
-                    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ASubject: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
                     
                     // Route directly via standard mailto app action
                     window.location.href = `mailto:koonapallicharan7898@gmail.com?subject=${subject}&body=${body}`;
                 }
-                // If protocol is HTTP/HTTPS, the script steps out of the way and lets FormSubmit handle it natively.
+                // If protocol is HTTP/HTTPS, FormSubmit receives the hidden _subject value updated above.
             });
         });
     </script>
