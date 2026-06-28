@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koona Palli Charan | Portfolio</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --secondary-bg: #1e293b;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #7dd3fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #334155;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Sections General */
+        section {
+            padding: 5rem 2rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 0;
+        }
+
+        .hero-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-bg-icons {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-bg-icon {
+            position: absolute;
+            color: rgba(56, 189, 248, 0.18);
+            font-size: 3rem;
+            opacity: 0.85;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .hero-bg-icon:nth-child(1) { top: 10%; left: 15%; animation-duration: 12s; }
+        .hero-bg-icon:nth-child(2) { top: 20%; right: 12%; animation-duration: 14s; animation-delay: 1s; }
+        .hero-bg-icon:nth-child(3) { bottom: 18%; left: 18%; animation-duration: 11s; animation-delay: 2s; }
+        .hero-bg-icon:nth-child(4) { bottom: 10%; right: 20%; animation-duration: 13s; animation-delay: 3s; }
+        .hero-bg-icon:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 15s; animation-delay: 1.5s; }
+        .hero-bg-icon:nth-child(6) { top: 30%; left: 7%; animation-duration: 10s; animation-delay: 0.8s; }
+        .hero-bg-icon:nth-child(7) { bottom: 25%; right: 8%; animation-duration: 16s; animation-delay: 2.2s; }
+        .hero-bg-icon:nth-child(8) { top: 65%; left: 35%; animation-duration: 14s; animation-delay: 1.2s; }
+
+        @keyframes float {
+            0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.75; }
+            25% { transform: translate3d(10px, -12px, 0) rotate(15deg); opacity: 0.85; }
+            50% { transform: translate3d(0, -24px, 0) rotate(0deg); opacity: 0.65; }
+            75% { transform: translate3d(-10px, -12px, 0) rotate(-15deg); opacity: 0.85; }
+            100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.75; }
+        }
+
+        .hero-photo {
+            width: 220px;
+            max-width: 100%;
+            aspect-ratio: 1 / 1;
+            display: block;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-copy {
+            max-width: 640px;
+        }
+
+        .hero-photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            width: 100%;
+            max-width: 260px;
+        }
+
+        .hero-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero h1 span {
+            color: var(--accent-color);
+        }
+
+        #hero h2 {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-p {
+            max-width: 600px;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.8rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Experience & Education Timeline */
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container {
+                grid-template-columns: 1fr;
+            }
+            #hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+
+        .timeline-box {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-box h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .timeline-box .company {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0.2rem 0;
+        }
+
+        .timeline-box .date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-box ul {
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-box ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--secondary-bg);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-header i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .project-card h3 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+        }
+
+        .tech-stack {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-card ul {
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .project-card ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--secondary-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-note {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: var(--text-color);
+            resize: vertical;
+        }
+
+        .contact-form textarea {
+            min-height: 160px;
+        }
+
+        .contact-form .contact-actions {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-form .contact-actions .btn {
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #090d16;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid #223147;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fa-solid fa-code"></i> Koona Palli Charan</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg-icons">
+            <i class="fas fa-code hero-bg-icon"></i>
+            <i class="fas fa-microchip hero-bg-icon"></i>
+            <i class="fas fa-laptop-code hero-bg-icon"></i>
+            <i class="fas fa-star hero-bg-icon"></i>
+            <i class="fas fa-circle-notch hero-bg-icon"></i>
+            <i class="fas fa-desktop hero-bg-icon"></i>
+            <i class="fas fa-bolt hero-bg-icon"></i>
+            <i class="fas fa-atom hero-bg-icon"></i>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-photo-container">
+                <img src="profile.jpeg" alt="Koona Palli Charan" class="hero-photo">
+                <div class="hero-actions">
+                    <div class="social-links">
+                        <a href="mailto:koonapallicharan7898@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://linkedin.com/in/koonapalli-charan-a8696937a" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Charan140205" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="charan_Resume.pdf" class="btn" download><i class="fas fa-download"></i> Download Resume</a>
+                        <a href="tel:+917981813650" class="btn"><i class="fas fa-phone"></i> +91 7981813650</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-copy">
+                <h1>Hi, I'm <span>Koona Palli Charan</span></h1>
+                <h2><i class="fa-solid fa-laptop-code"></i> Software Developer</h2>
+                <p class="hero-p">
+                    Electronics and Communication Engineering graduate with strong knowledge of Java, Python, SQL, HTML, CSS, JavaScript, and MySQL. Hands-on experience in web development, embedded systems, and IoT projects.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-solid fa-terminal"></i>
+                <h3>Languages</h3>
+                <p>Python, Java, JavaScript</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-globe"></i>
+                <h3>Web Technologies</h3>
+                <p>HTML5, CSS3, React Native</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database"></i>
+                <h3>Backend / DB</h3>
+                <p>JDBC, MySQL, SQL</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-gears"></i>
+                <h3>Tools</h3>
+                <p>Git, GitHub, VS Code, Eclipse IDE</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title"><i class="fa-solid fa-briefcase"></i>Professional Experience</h2>
+        <div>
+            <div class="timeline-box">
+                <h3>Full Stack Java Developer Intern</h3>
+                <div class="company"><i class="fa-solid fa-building"></i> Vstand4u Technologies</div>
+                <div class="date"><i class="fa-solid fa-calendar-days"></i> Dec 2025 - Present</div>
+                <ul>
+                    <li>Created and tested Java-based web application modules using Java, HTML, CSS, JavaScript, and MySQL.</li>
+                    <li>Integrated backend functionality to support user authentication and data management.</li>
+                    <li>Performed database operations and CRUD functionalities using MySQL.</li>
+                </ul>
+            </div>
+            <div class="timeline-box">
+                <h3>Industrial Trainee</h3>
+                <div class="company"><i class="fa-solid fa-building"></i> AIL Dixon Pvt. Ltd., Tirupati</div>
+                <div class="date"><i class="fa-solid fa-calendar-days"></i> Testing & Reworking Center (TRC)</div>
+                <ul>
+                    <li>Achieved 98%+ assembly accuracy by following standard operating procedures.</li>
+                    <li>Conducted functional testing to ensure product performance and reliability.</li>
+                    <li>Worked with the Quality Assurance (QA) team to maintain production standards.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <h3>IntelliDoor</h3>
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div class="tech-stack">Raspberry Pi 5, Python, SQLite/MySQL</div>
+                    <ul>
+                        <li>Developed a Raspberry Pi 5-based smart digital notice system with fingerprint authentication.</li>
+                        <li>Built a real-time seat allocation and verification module using Python and SQLite/MySQL.</li>
+                        <li>Automated exam hall management by replacing manual seating charts with an energy-efficient embedded solution.</li>
+                        <li>Blended hardware and database components for secure authentication and real-time information display.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <h3>Bank Management System</h3>
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <div class="tech-stack">Python, OOPs</div>
+                    <ul>
+                        <li>Built a Bank Management System using Python, OOP concepts, and file handling.</li>
+                        <li>Implemented account creation, deposits, withdrawals, and balance checking.</li>
+                        <li>Used file handling for secure data storage.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <h3>Home Automation System</h3>
+                        <i class="fa-solid fa-house-laptop"></i>
+                    </div>
+                    <div class="tech-stack">Arduino Uno, Embedded C</div>
+                    <ul>
+                        <li>Integrated a Bluetooth-enabled home automation system using Arduino for smartphone-based appliance control.</li>
+                        <li>Merged relay modules and sensors to enable reliable wireless operation and real-time device management.</li>
+                        <li>Implemented individual appliance control and scene management to improve automation efficiency and user convenience.</li>
+                        <li>Evaluated and optimized the system for stable performance and low-power operation.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <div>
+                    <div class="project-header">
+                        <h3>Restaurant Menu Website</h3>
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div class="tech-stack">HTML5, CSS3, JavaScript</div>
+                    <ul>
+                        <li>Implement a responsive restaurant website using HTML, CSS, and JavaScript.</li>
+                        <li>Created responsive layouts and user-friendly navigation.</li>
+                        <li>Tested website presentation and menu accessibility.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Credentials Section -->
+    <section id="education">
+        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i>Education & Credentials</h2>
+        <div class="timeline-container">
+            <div>
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;"><i class="fa-solid fa-user-graduate"></i> Academic Journey</h3>
+                <div class="timeline-box">
+                    <h3>B.Tech - Electronics & Communication Engineering</h3>
+                    <div class="company">Sri Venkateswara College of Engineering, Tirupati</div>
+                    <div class="date"><i class="fa-solid fa-calendar"></i> 2023 - 2026 | <i class="fa-solid fa-chart-simple"></i> Score: 77%</div>
+                </div>
+                <div class="timeline-box">
+                    <h3>Diploma - Electronics & Communication Engineering</h3>
+                    <div class="company">Govt Polytechnic College, Chandragiri</div>
+                    <div class="date"><i class="fa-solid fa-calendar"></i> 2020 - 2023 | <i class="fa-solid fa-chart-simple"></i> Score: 69.9%</div>
+                </div>
+                <div class="timeline-box">
+                    <h3>SSC - Secondary School Certificate</h3>
+                    <div class="company">Gitam High School, Chandragiri</div>
+                    <div class="date"><i class="fa-solid fa-calendar"></i> 2015 - 2020 | <i class="fa-solid fa-chart-simple"></i> Score: 96.5%</div>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;"><i class="fa-solid fa-award"></i> Certifications & Honors</h3>
+                <div class="timeline-box" style="border-left-color: #10b981;">
+                    <h3>Certifications</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><i class="fas fa-check-circle" style="color:#10b981; margin-right: 8px;"></i> AI, ML & Generative AI – VStand4U Technologies (2026)</li>
+                        <li><i class="fas fa-check-circle" style="color:#10b981; margin-right: 8px;"></i> VLSI Design – CodeTech IT Solutions (2025)</li>
+                        <li><i class="fas fa-check-circle" style="color:#10b981; margin-right: 8px;"></i> 2-Day Python Programming Workshop – [CREC]</li>
+                    </ul>
+                </div>
+                <div class="timeline-box" style="border-left-color: #f59e0b;">
+                    <h3>Achievements</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><i class="fas fa-medal" style="color:#f59e0b; margin-right: 8px;"></i> NCC 'B' Certificate Holder</li>
+                        <li><i class="fas fa-trophy" style="color:#f59e0b; margin-right: 8px;"></i> Captain of the College Cricket Team</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title"><i class="fa-solid fa-envelope"></i>Send a Message</h2>
+        <div class="contact-form">
+            <form id="contactForm" action="https://formsubmit.co/koonapallicharan7898@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New message from portfolio contact form">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <label for="name">Name</label>
+                <input type="text" id="name" name="Name" placeholder="Your name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" placeholder="Your email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="Message" placeholder="Write your message here" required></textarea>
+
+                <div class="contact-actions">
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    <a href="mailto:koonapallicharan7898@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Directly</a>
+                </div>
+                <p id="formNote" class="form-note"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Koona Palli Charan. All rights reserved. Refer to charan_Resume.pdf for verification.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const formNote = document.getElementById('formNote');
+
+            // 1. Check if the portfolio is opened locally from a folder (file:// protocol)
+            if (window.location.protocol === 'file:') {
+                formNote.style.display = 'block';
+                formNote.textContent = "Notice: Running locally. Submitting this form will open your computer's default email app.";
+            }
+
+            // 2. Intercept submission to ensure fallback works flawlessly
+            contactForm.addEventListener('submit', function(event) {
+                if (window.location.protocol === 'file:') {
+                    event.preventDefault(); // Stop form from trying to post to formsubmit.co over file system
+                    
+                    const name = encodeURIComponent(document.getElementById('name').value);
+                    const email = encodeURIComponent(document.getElementById('email').value);
+                    const message = encodeURIComponent(document.getElementById('message').value);
+                    
+                    const subject = encodeURIComponent('Portfolio Contact Form Message');
+                    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                    
+                    // Route directly via standard mailto app action
+                    window.location.href = `mailto:koonapallicharan7898@gmail.com?subject=${subject}&body=${body}`;
+                }
+                // If protocol is HTTP/HTTPS, the script steps out of the way and lets FormSubmit handle it natively.
+            });
+        });
+    </script>
+</body>
+</html>
