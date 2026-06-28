@@ -1,688 +1,334 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koona Palli Charan | Portfolio</title>
-    <!-- Font Awesome for Icons -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --secondary-bg: #1e293b;
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent-color: #38bdf8;
-            --accent-hover: #7dd3fc;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid #334155;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Sections General */
-        section {
-            padding: 5rem 2rem 2rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            position: relative;
-            color: var(--text-color);
-        }
-
-        .section-title i {
-            margin-right: 10px;
-            color: var(--accent-color);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background: var(--accent-color);
-            margin: 10px auto 0 auto;
-            border-radius: 2px;
-        }
-
-        /* Hero Section */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 0;
-        }
-
-        .hero-inner {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-            align-items: center;
-            max-width: 1100px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-bg-icons {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .hero-bg-icon {
-            position: absolute;
-            color: rgba(56, 189, 248, 0.18);
-            font-size: 3rem;
-            opacity: 0.85;
-            animation: float 12s ease-in-out infinite;
-        }
-
-        .hero-bg-icon:nth-child(1) { top: 10%; left: 15%; animation-duration: 12s; }
-        .hero-bg-icon:nth-child(2) { top: 20%; right: 12%; animation-duration: 14s; animation-delay: 1s; }
-        .hero-bg-icon:nth-child(3) { bottom: 18%; left: 18%; animation-duration: 11s; animation-delay: 2s; }
-        .hero-bg-icon:nth-child(4) { bottom: 10%; right: 20%; animation-duration: 13s; animation-delay: 3s; }
-        .hero-bg-icon:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 15s; animation-delay: 1.5s; }
-        .hero-bg-icon:nth-child(6) { top: 30%; left: 7%; animation-duration: 10s; animation-delay: 0.8s; }
-        .hero-bg-icon:nth-child(7) { bottom: 25%; right: 8%; animation-duration: 16s; animation-delay: 2.2s; }
-        .hero-bg-icon:nth-child(8) { top: 65%; left: 35%; animation-duration: 14s; animation-delay: 1.2s; }
-
-        @keyframes float {
-            0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.75; }
-            25% { transform: translate3d(10px, -12px, 0) rotate(15deg); opacity: 0.85; }
-            50% { transform: translate3d(0, -24px, 0) rotate(0deg); opacity: 0.65; }
-            75% { transform: translate3d(-10px, -12px, 0) rotate(-15deg); opacity: 0.85; }
-            100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.75; }
-        }
-
-        .hero-photo {
-            width: 220px;
-            max-width: 100%;
-            aspect-ratio: 1 / 1;
-            display: block;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid var(--accent-color);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-        }
-
-        .hero-copy {
-            max-width: 640px;
-        }
-
-        .hero-photo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-            align-items: center;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            align-items: center;
-            width: 100%;
-            max-width: 260px;
-        }
-
-        .hero-buttons .btn {
-            width: 100%;
-            text-align: center;
-        }
-
-        #hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        #hero h1 span {
-            color: var(--accent-color);
-        }
-
-        #hero h2 {
-            font-size: 1.8rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-p {
-            max-width: 600px;
-            margin-bottom: 2rem;
-            color: var(--text-muted);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: var(--text-color);
-            font-size: 1.8rem;
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        .btn {
-            display: inline-block;
-            background: transparent;
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--secondary-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-card i {
-            font-size: 2rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h3 {
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .skill-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        /* Experience & Education Timeline */
-        .timeline-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .timeline-container {
-                grid-template-columns: 1fr;
-            }
-            #hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-        }
-
-        .timeline-box {
-            background: var(--secondary-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .timeline-box h3 {
-            font-size: 1.2rem;
-            color: var(--text-color);
-        }
-
-        .timeline-box .company {
-            color: var(--accent-color);
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin: 0.2rem 0;
-        }
-
-        .timeline-box .date {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .timeline-box ul {
-            padding-left: 1.2rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .timeline-box ul li {
-            margin-bottom: 0.4rem;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--secondary-bg);
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-header i {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-        }
-
-        .project-card h3 {
-            color: var(--text-color);
-            font-size: 1.3rem;
-        }
-
-        .tech-stack {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .project-card ul {
-            padding-left: 1.1rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .project-card ul li {
-            margin-bottom: 0.4rem;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            background: var(--secondary-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        .form-note {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            background: rgba(56, 189, 248, 0.12);
-            color: var(--accent-color);
-            font-size: 0.95rem;
-            display: none;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            margin-bottom: 1rem;
-            border-radius: 6px;
-            border: 1px solid #334155;
-            background: #0f172a;
-            color: var(--text-color);
-            resize: vertical;
-        }
-
-        .contact-form textarea {
-            min-height: 160px;
-        }
-
-        .contact-form .contact-actions {
-            display: flex;
-            justify-content: flex-start;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-form .contact-actions .btn {
-            margin: 0;
-        }
-
-        /* Footer */
-        footer {
-            background: #090d16;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid #223147;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-    </style>
 </head>
-<body>
+<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo"><i class="fa-solid fa-code"></i> Koona Palli Charan</a>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-zinc-900/90 backdrop-blur-md border-b border-zinc-800 shadow-lg shadow-black/20">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-tight text-teal-400 uppercase">Koona Palli Charan</a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-400">
+                <a href="#about" class="hover:text-teal-400 transition"><i class="fa-solid fa-user mr-1.5"></i>About</a>
+                <a href="#education" class="hover:text-teal-400 transition"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Education</a>
+                <a href="#skills" class="hover:text-teal-400 transition"><i class="fa-solid fa-code mr-1.5"></i>Skills</a>
+                <a href="#experience" class="hover:text-teal-400 transition"><i class="fa-solid fa-briefcase mr-1.5"></i>Experience</a>
+                <a href="#projects" class="hover:text-teal-400 transition"><i class="fa-solid fa-diagram-project mr-1.5"></i>Projects</a>
+                <a href="#contact" class="hover:text-teal-400 transition"><i class="fa-solid fa-envelope mr-1.5"></i>Contact</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-zinc-400 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 px-6 py-4 space-y-3">
+            <a href="#about" class="block text-sm font-medium text-zinc-400 hover:text-teal-400"><i class="fa-solid fa-user mr-2"></i>About</a>
+            <a href="#education" class="block text-sm font-medium text-zinc-400 hover:text-teal-400"><i class="fa-solid fa-graduation-cap mr-2"></i>Education</a>
+            <a href="#skills" class="block text-sm font-medium text-zinc-400 hover:text-teal-400"><i class="fa-solid fa-code mr-2"></i>Skills</a>
+            <a href="#experience" class="block text-sm font-medium text-zinc-400 hover:text-teal-400"><i class="fa-solid fa-briefcase mr-2"></i>Experience</a>
+            <a href="#projects" class="block text-sm font-medium text-zinc-400 hover:text-teal-400"><i class="fa-solid fa-diagram-project mr-2"></i>Projects</a>
+            <a href="#contact" class="block text-sm font-medium text-zinc-400 hover:text-teal-400"><i class="fa-solid fa-envelope mr-2"></i>Contact</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-bg-icons">
-            <i class="fas fa-code hero-bg-icon"></i>
-            <i class="fas fa-microchip hero-bg-icon"></i>
-            <i class="fas fa-laptop-code hero-bg-icon"></i>
-            <i class="fas fa-star hero-bg-icon"></i>
-            <i class="fas fa-circle-notch hero-bg-icon"></i>
-            <i class="fas fa-desktop hero-bg-icon"></i>
-            <i class="fas fa-bolt hero-bg-icon"></i>
-            <i class="fas fa-atom hero-bg-icon"></i>
+    <section class="max-w-6xl mx-auto px-6 pt-16 pb-16 md:pt-28 md:pb-24 grid md:grid-cols-3 gap-12 items-center">
+        <div class="md:col-span-2 order-2 md:order-1">
+            <span class="text-teal-400 font-semibold tracking-wide uppercase text-xs px-2.5 py-1 bg-teal-950/60 rounded-full border border-teal-800/40">Software Developer</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mt-4 mb-6 leading-tight">
+                Hi, I'm <span class="text-teal-400">Koona Palli Charan</span>
+            </h1>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-8 leading-relaxed">
+                An Electronics and Communication Engineering graduate passionate about software development, embedded systems, and problem-solving. I have hands-on experience in full-stack web environments, building scalable applications, and executing IoT implementations.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <!-- Resume Download Button -->
+                <a href="charan_Resume.pdf" download="Koona_Palli_Charan_Resume.pdf" class="bg-teal-600 hover:bg-teal-500 text-zinc-950 px-6 py-3 rounded-xl font-bold transition shadow-md shadow-teal-950 flex items-center gap-2">
+                    <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+                </a>
+                <a href="#projects" class="bg-zinc-900 border border-zinc-800 hover:border-teal-400 text-zinc-300 hover:text-teal-400 px-6 py-3 rounded-xl font-medium transition flex items-center gap-2">
+                    View Projects
+                </a>
+            </div>
         </div>
-        <div class="hero-inner">
-            <div class="hero-photo-container">
-                <img src="profile.jpeg" alt="Koona Palli Charan" class="hero-photo">
-                <div class="hero-actions">
-                    <div class="social-links">
-                        <a href="mailto:koonapallicharan7898@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://linkedin.com/in/koonapalli-charan-a8696937a" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Charan140205" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+        
+        <!-- Profile Image & Contact Card -->
+        <div class="order-1 md:order-2 flex flex-col items-center">
+            <!-- Photo Frame -->
+            <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-zinc-800 shadow-2xl mb-6 bg-zinc-800 flex items-center justify-center relative group">
+                <img src="Profile.jpeg" alt="Koona Palli Charan" onerror="this.style.display='none';" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Quick Contact Box -->
+            <div class="bg-zinc-900 border border-zinc-800/80 rounded-2xl p-6 shadow-xl space-y-3 w-full">
+                <p class="text-sm text-zinc-400 flex items-center gap-3"><i class="fa-solid fa-location-dot text-teal-400 w-4"></i> Tirupati, AP</p>
+                <p class="text-sm text-zinc-400 flex items-center gap-3"><i class="fa-solid fa-envelope text-teal-400 w-4"></i> koonapallicharan7898@gmail.com</p>
+                <p class="text-sm text-zinc-400 flex items-center gap-3"><i class="fa-solid fa-phone text-teal-400 w-4"></i> +91 7981813650</p>
+                <div class="flex gap-4 pt-2 border-t border-zinc-800/60 justify-center">
+                    <a href="https://github.com" target="_blank" class="text-zinc-500 hover:text-white transition"><i class="fa-brands fa-github text-xl"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="text-zinc-500 hover:text-teal-400 transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Achievements Section -->
+    <section id="about" class="bg-zinc-900 border-y border-zinc-800/80 py-20">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+            <div>
+                <h2 class="text-2xl font-bold text-white tracking-tight">Professional Summary</h2>
+                <p class="text-zinc-500 text-sm mt-2">Driven by engineering, code, and team execution.</p>
+            </div>
+            <div class="md:col-span-2 text-zinc-400 space-y-6 leading-relaxed">
+                <p>
+                    Electronics and Communication Engineering graduate with strong knowledge of Java, Python, SQL, HTML, CSS, JavaScript, and MySQL. Highly adaptable professional with hands-on experience in web development, embedded systems, and IoT projects. Passionate about software development, problem-solving, and building architectural workflows. Seeking a Software Developer role where I can scale technical features and add foundational metrics to a team ecosystem.
+                </p>
+                <div class="bg-zinc-950 p-5 rounded-xl border border-zinc-800">
+                    <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-award text-amber-400"></i> Core Leadership & Achievements
+                    </h4>
+                    <ul class="list-none text-sm text-zinc-400 space-y-2.5">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-shield-halved text-teal-400 mt-1"></i>
+                            <span><strong>NCC 'B' Certificate Holder:</strong> Demonstrated structural leadership, collaborative agility, and discipline through active NCC operations.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-trophy text-teal-400 mt-1"></i>
+                            <span><strong>Captain of the College Cricket Team:</strong> Orchestrated strategies and led the team to win the official college cricket tournament.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="max-w-6xl mx-auto px-6 py-20">
+        <h2 class="text-2xl font-bold text-white tracking-tight mb-12 text-center">Educational Background</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- B.Tech -->
+            <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg relative">
+                <div class="w-12 h-12 bg-teal-950/50 rounded-xl flex items-center justify-center mb-4 text-teal-400 text-xl border border-teal-900/40">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-teal-400 block mb-1">2023 - 2026</span>
+                <h3 class="font-bold text-white text-lg">B.Tech - Electronics & Communication Engineering</h3>
+                <p class="text-sm text-zinc-400 mt-1">Sri Venkateswara College of Engineering, Tirupati</p>
+                <span class="inline-block bg-teal-950/60 text-teal-300 border border-teal-900/50 text-xs font-semibold px-2.5 py-1 rounded-md mt-4"><i class="fa-solid fa-chart-simple mr-1"></i> Aggregate: 77%</span>
+            </div>
+            <!-- Diploma -->
+            <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
+                <div class="w-12 h-12 bg-emerald-950/50 rounded-xl flex items-center justify-center mb-4 text-emerald-400 text-xl border border-emerald-900/40">
+                    <i class="fa-solid fa-scroll"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-emerald-400 block mb-1">2020 - 2023</span>
+                <h3 class="font-bold text-white text-lg">Diploma - Electronics & Communication Engineering</h3>
+                <p class="text-sm text-zinc-400 mt-1">Govt Polytechnic College, Chandragiri</p>
+                <span class="inline-block bg-emerald-950/60 text-emerald-300 border border-emerald-900/50 text-xs font-semibold px-2.5 py-1 rounded-md mt-4"><i class="fa-solid fa-chart-simple mr-1"></i> Aggregate: 69.9%</span>
+            </div>
+            <!-- SSC -->
+            <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
+                <div class="w-12 h-12 bg-amber-950/50 rounded-xl flex items-center justify-center mb-4 text-amber-400 text-xl border border-amber-900/40">
+                    <i class="fa-solid fa-school"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-amber-400 block mb-1">2015 - 2020</span>
+                <h3 class="font-bold text-white text-lg">SSC - Secondary School Certificate</h3>
+                <p class="text-sm text-zinc-400 mt-1">Gitam High School, Chandragiri</p>
+                <span class="inline-block bg-amber-950/60 text-amber-300 border border-amber-900/50 text-xs font-semibold px-2.5 py-1 rounded-md mt-4"><i class="fa-solid fa-chart-simple mr-1"></i> Score: 96.5%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="bg-black text-white py-20 border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-2xl font-bold tracking-tight text-center mb-12">Technical Frameworks & Skills</h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Languages -->
+                <div>
+                    <h3 class="text-teal-400 font-semibold text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-terminal"></i> Languages
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-python text-sky-400"></i> Python</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-java text-orange-400"></i> Java</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-js text-yellow-400"></i> JavaScript</span>
                     </div>
-                    <div class="hero-buttons">
-                        <a href="charan_Resume.pdf" class="btn" download><i class="fas fa-download"></i> Download Resume</a>
-                        <a href="tel:+917981813650" class="btn"><i class="fas fa-phone"></i> +91 7981813650</a>
+                </div>
+                <!-- Web & Mobile -->
+                <div>
+                    <h3 class="text-teal-400 font-semibold text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code"></i> Web Technologies
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-500"></i> HTML5</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-css3-alt text-blue-500"></i> CSS3</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-react text-cyan-400"></i> React Native</span>
+                    </div>
+                </div>
+                <!-- Backend & DB -->
+                <div>
+                    <h3 class="text-teal-400 font-semibold text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-database"></i> Backend / DB
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-solid fa-server text-amber-500"></i> JDBC</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-solid fa-database text-sky-500"></i> MySQL</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-solid fa-table text-emerald-400"></i> SQL</span>
+                    </div>
+                </div>
+                <!-- Tools -->
+                <div>
+                    <h3 class="text-teal-400 font-semibold text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-gears"></i> Tools
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-git-alt text-orange-600"></i> Git</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-brands fa-github"></i> GitHub</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-solid fa-code text-blue-400"></i> VS Code</span>
+                        <span class="bg-zinc-900 text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-1.5"><i class="fa-solid fa-circle-dot text-indigo-400"></i> Eclipse IDE</span>
                     </div>
                 </div>
             </div>
-            <div class="hero-copy">
-                <h1>Hi, I'm <span>Koona Palli Charan</span></h1>
-                <h2><i class="fa-solid fa-laptop-code"></i> Software Developer</h2>
-                <p class="hero-p">
-                    Electronics and Communication Engineering graduate with strong knowledge of Java, Python, SQL, HTML, CSS, JavaScript, and MySQL. Hands-on experience in web development, embedded systems, and IoT projects.
-                </p>
+
+            <!-- Certifications Badge Row -->
+            <div class="mt-16 border-t border-zinc-900 pt-8">
+                <h4 class="text-center text-sm font-semibold text-zinc-400 uppercase tracking-widest mb-6 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-certificate text-teal-400"></i> Verified Accreditations
+                </h4>
+                <div class="flex flex-wrap justify-center gap-4 text-xs">
+                    <span class="bg-teal-950/40 text-teal-300 border border-teal-900/50 px-4 py-2 rounded-full flex items-center gap-2"><i class="fa-solid fa-microchip text-teal-400"></i> VLSI Design | CodeTech IT Solutions (2025)</span>
+                    <span class="bg-teal-950/40 text-teal-300 border border-teal-900/50 px-4 py-2 rounded-full flex items-center gap-2"><i class="fa-solid fa-brain text-teal-400"></i> AI, ML & Generative AI | VStand4U Technologies (2026)</span>
+                    <span class="bg-teal-950/40 text-teal-300 border border-teal-900/50 px-4 py-2 rounded-full flex items-center gap-2"><i class="fa-brands fa-python text-teal-400"></i> 2-Day Python Programming Workshop | CREC</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i>Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fa-solid fa-terminal"></i>
-                <h3>Languages</h3>
-                <p>Python, Java, JavaScript</p>
-            </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-globe"></i>
-                <h3>Web Technologies</h3>
-                <p>HTML5, CSS3, React Native</p>
-            </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-database"></i>
-                <h3>Backend / DB</h3>
-                <p>JDBC, MySQL, SQL</p>
-            </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-gears"></i>
-                <h3>Tools</h3>
-                <p>Git, GitHub, VS Code, Eclipse IDE</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2 class="section-title"><i class="fa-solid fa-briefcase"></i>Professional Experience</h2>
-        <div>
-            <div class="timeline-box">
-                <h3>Full Stack Java Developer Intern</h3>
-                <div class="company"><i class="fa-solid fa-building"></i> Vstand4u Technologies</div>
-                <div class="date"><i class="fa-solid fa-calendar-days"></i> Dec 2025 - Present</div>
-                <ul>
-                    <li>Created and tested Java-based web application modules using Java, HTML, CSS, JavaScript, and MySQL.</li>
-                    <li>Integrated backend functionality to support user authentication and data management.</li>
-                    <li>Performed database operations and CRUD functionalities using MySQL.</li>
+    <!-- Experience / Internships Section -->
+    <section id="experience" class="max-w-6xl mx-auto px-6 py-20">
+        <h2 class="text-2xl font-bold text-white tracking-tight mb-12">Professional Experience</h2>
+        <div class="space-y-8 border-l-2 border-teal-950 pl-6 ml-2">
+            <!-- Internship 1 -->
+            <div class="relative">
+                <div class="absolute -left-[37px] top-1 bg-zinc-950 border-2 border-teal-400 w-5 h-5 rounded-full flex items-center justify-center text-xs text-teal-400">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <div class="flex flex-wrap justify-between items-baseline mb-2">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        Full Stack Java Developer Intern
+                    </h3>
+                    <span class="text-sm font-semibold text-teal-400 bg-teal-950/60 border border-teal-900/40 px-2.5 py-1 rounded-md"><i class="fa-solid fa-calendar-days mr-1.5"></i> Dec 2025 - Present</span>
+                </div>
+                <p class="text-sm font-medium text-zinc-400 mb-3 flex items-center gap-1.5"><i class="fa-solid fa-building text-zinc-500"></i> Vstand4u Technologies</p>
+                <ul class="list-none text-sm text-zinc-400 space-y-2 max-w-4xl">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                        <span>Created and tested Java-based web application modules using Java, HTML, CSS, JavaScript, and MySQL.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                        <span>Integrated backend functionality to support secure user authentication and systematic data management structures.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                        <span>Executed structured relational database queries and multi-table CRUD functionalities using MySQL.</span>
+                    </li>
                 </ul>
             </div>
-            <div class="timeline-box">
-                <h3>Industrial Trainee</h3>
-                <div class="company"><i class="fa-solid fa-building"></i> AIL Dixon Pvt. Ltd., Tirupati</div>
-                <div class="date"><i class="fa-solid fa-calendar-days"></i> Testing & Reworking Center (TRC)</div>
-                <ul>
-                    <li>Achieved 98%+ assembly accuracy by following standard operating procedures.</li>
-                    <li>Conducted functional testing to ensure product performance and reliability.</li>
-                    <li>Worked with the Quality Assurance (QA) team to maintain production standards.</li>
+            <!-- Internship 2 -->
+            <div class="relative">
+                <div class="absolute -left-[37px] top-1 bg-zinc-950 border-2 border-teal-400 w-5 h-5 rounded-full flex items-center justify-center text-xs text-teal-400">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div class="flex flex-wrap justify-between items-baseline mb-2">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        Technical Associate (Testing & Reworking Center)
+                    </h3>
+                    <span class="text-sm font-semibold text-teal-400 bg-teal-950/60 border border-teal-900/40 px-2.5 py-1 rounded-md"><i class="fa-solid fa-calendar-days mr-1.5"></i> Core Framework Period</span>
+                </div>
+                <p class="text-sm font-medium text-zinc-400 mb-3 flex items-center gap-1.5"><i class="fa-solid fa-building text-zinc-500"></i> AIL Dixon Pvt. Ltd., Tirupati</p>
+                <ul class="list-none text-sm text-zinc-400 space-y-2 max-w-4xl">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                        <span>Achieved an aggregate of 98%+ module assembly accuracy by systematically matching standard operating parameters.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                        <span>Conducted rigorous functional hardware testing cycles to safely guarantee long-term performance threshold metrics.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                        <span>Collaborated interactively with the enterprise Quality Assurance (QA) units to consistently sustain high manufacturing output baselines.</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i>Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <h3>IntelliDoor</h3>
-                        <i class="fa-solid fa-microchip"></i>
+    <section id="projects" class="bg-zinc-900/50 border-t border-b border-zinc-900 py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-2xl font-bold text-white tracking-tight mb-12 text-center">Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden shadow-sm hover:shadow-teal-950/30 transition p-6">
+                    <div class="w-10 h-10 bg-teal-950/50 rounded-lg flex items-center justify-center text-teal-400 text-lg mb-4 border border-teal-900/30">
+                        <i class="fa-solid fa-door-open"></i>
                     </div>
-                    <div class="tech-stack">Raspberry Pi 5, Python, SQLite/MySQL</div>
-                    <ul>
-                        <li>Developed a Raspberry Pi 5-based smart digital notice system with fingerprint authentication.</li>
-                        <li>Built a real-time seat allocation and verification module using Python and SQLite/MySQL.</li>
-                        <li>Automated exam hall management by replacing manual seating charts with an energy-efficient embedded solution.</li>
-                        <li>Blended hardware and database components for secure authentication and real-time information display.</li>
+                    <span class="text-xs font-mono font-bold text-teal-400 uppercase tracking-wider">Raspberry Pi 5, Python</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-3">IntelliDoor - Smart Digital Notice & Verification System</h3>
+                    <ul class="text-sm text-zinc-400 space-y-2 list-none">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-teal-400 mt-1 text-xs"></i><span>Developed a Raspberry Pi 5-based smart digital notice system embedded with secure fingerprint authentication.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-teal-400 mt-1 text-xs"></i><span>Built an instantaneous structural seat allocation and verification module using Python coupled with SQLite/MySQL backends.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-teal-400 mt-1 text-xs"></i><span>Automated exam hall management procedures by substituting paper seating maps with an eco-conscious embedded architecture.</span></li>
                     </ul>
                 </div>
-            </div>
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <h3>Bank Management System</h3>
-                        <i class="fa-solid fa-building-columns"></i>
-                    </div>
-                    <div class="tech-stack">Python, OOPs</div>
-                    <ul>
-                        <li>Built a Bank Management System using Python, OOP concepts, and file handling.</li>
-                        <li>Implemented account creation, deposits, withdrawals, and balance checking.</li>
-                        <li>Used file handling for secure data storage.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <h3>Home Automation System</h3>
+                <!-- Project 2 -->
+                <div class="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden shadow-sm hover:shadow-rose-950/30 transition p-6">
+                    <div class="w-10 h-10 bg-rose-950/50 rounded-lg flex items-center justify-center text-rose-400 text-lg mb-4 border border-rose-900/30">
                         <i class="fa-solid fa-house-laptop"></i>
                     </div>
-                    <div class="tech-stack">Arduino Uno, Embedded C</div>
-                    <ul>
-                        <li>Integrated a Bluetooth-enabled home automation system using Arduino for smartphone-based appliance control.</li>
-                        <li>Merged relay modules and sensors to enable reliable wireless operation and real-time device management.</li>
-                        <li>Implemented individual appliance control and scene management to improve automation efficiency and user convenience.</li>
-                        <li>Evaluated and optimized the system for stable performance and low-power operation.</li>
+                    <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">Arduino Uno, Embedded C</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-3">Home Automation System using Arduino</h3>
+                    <ul class="text-sm text-zinc-400 space-y-2 list-none">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-rose-400 mt-1 text-xs"></i><span>Integrated a custom Bluetooth-enabled smart ecosystem using Arduino controllers for direct wireless smartphone operation.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-rose-400 mt-1 text-xs"></i><span>Merged complex relay nodes with telemetry sensors to foster reliable remote real-time device configuration.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-rose-400 mt-1 text-xs"></i><span>Evaluated structural microprocessors to safely optimize operational firmware runtimes for low-power efficiency.</span></li>
                     </ul>
                 </div>
-            </div>
-            <div class="project-card">
-                <div>
-                    <div class="project-header">
-                        <h3>Restaurant Menu Website</h3>
+                <!-- Project 3 -->
+                <div class="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden shadow-sm hover:shadow-amber-950/30 transition p-6">
+                    <div class="w-10 h-10 bg-amber-950/50 rounded-lg flex items-center justify-center text-amber-400 text-lg mb-4 border border-amber-900/30">
                         <i class="fa-solid fa-utensils"></i>
                     </div>
-                    <div class="tech-stack">HTML5, CSS3, JavaScript</div>
-                    <ul>
-                        <li>Implement a responsive restaurant website using HTML, CSS, and JavaScript.</li>
-                        <li>Created responsive layouts and user-friendly navigation.</li>
-                        <li>Tested website presentation and menu accessibility.</li>
+                    <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">HTML5, CSS3, JavaScript</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-3">Restaurant Menu Website</h3>
+                    <ul class="text-sm text-zinc-400 space-y-2 list-none">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-amber-400 mt-1 text-xs"></i><span>Implemented an adaptable, clean restaurant storefront showcase utilizing native web structures.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-amber-400 mt-1 text-xs"></i><span>Created responsive layouts and user-friendly navigation blocks mapping fluid cross-device viewports.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-amber-400 mt-1 text-xs"></i><span>Tested presentation layouts to certify smooth accessibility compliance across public client machines.</span></li>
                     </ul>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education & Credentials Section -->
-    <section id="education">
-        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i>Education & Credentials</h2>
-        <div class="timeline-container">
-            <div>
-                <h3 style="color: var(--accent-color); margin-bottom: 1rem;"><i class="fa-solid fa-user-graduate"></i> Academic Journey</h3>
-                <div class="timeline-box">
-                    <h3>B.Tech - Electronics & Communication Engineering</h3>
-                    <div class="company">Sri Venkateswara College of Engineering, Tirupati</div>
-                    <div class="date"><i class="fa-solid fa-calendar"></i> 2023 - 2026 | <i class="fa-solid fa-chart-simple"></i> Score: 77%</div>
-                </div>
-                <div class="timeline-box">
-                    <h3>Diploma - Electronics & Communication Engineering</h3>
-                    <div class="company">Govt Polytechnic College, Chandragiri</div>
-                    <div class="date"><i class="fa-solid fa-calendar"></i> 2020 - 2023 | <i class="fa-solid fa-chart-simple"></i> Score: 69.9%</div>
-                </div>
-                <div class="timeline-box">
-                    <h3>SSC - Secondary School Certificate</h3>
-                    <div class="company">Gitam High School, Chandragiri</div>
-                    <div class="date"><i class="fa-solid fa-calendar"></i> 2015 - 2020 | <i class="fa-solid fa-chart-simple"></i> Score: 96.5%</div>
-                </div>
-            </div>
-            <div>
-                <h3 style="color: var(--accent-color); margin-bottom: 1rem;"><i class="fa-solid fa-award"></i> Certifications & Honors</h3>
-                <div class="timeline-box" style="border-left-color: #10b981;">
-                    <h3>Certifications</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><i class="fas fa-check-circle" style="color:#10b981; margin-right: 8px;"></i> AI, ML & Generative AI – VStand4U Technologies (2026)</li>
-                        <li><i class="fas fa-check-circle" style="color:#10b981; margin-right: 8px;"></i> VLSI Design – CodeTech IT Solutions (2025)</li>
-                        <li><i class="fas fa-check-circle" style="color:#10b981; margin-right: 8px;"></i> 2-Day Python Programming Workshop – [CREC]</li>
-                    </ul>
-                </div>
-                <div class="timeline-box" style="border-left-color: #f59e0b;">
-                    <h3>Achievements</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><i class="fas fa-medal" style="color:#f59e0b; margin-right: 8px;"></i> NCC 'B' Certificate Holder</li>
-                        <li><i class="fas fa-trophy" style="color:#f59e0b; margin-right: 8px;"></i> Captain of the College Cricket Team</li>
+                <!-- Project 4 -->
+                <div class="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden shadow-sm hover:shadow-emerald-950/30 transition p-6">
+                    <div class="w-10 h-10 bg-emerald-950/50 rounded-lg flex items-center justify-center text-emerald-400 text-lg mb-4 border border-emerald-900/30">
+                        <i class="fa-solid fa-vault"></i>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">Python</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-3">Bank Management System</h3>
+                    <ul class="text-sm text-zinc-400 space-y-2 list-none">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-emerald-400 mt-1 text-xs"></i><span>Built a Bank Management suite anchoring Python programming, OOP design methodologies, and strict parameters.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-emerald-400 mt-1 text-xs"></i><span>Implemented secure modules handling core ledger balances, transactional logging, account instantiation, and queries.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-chevron-right text-emerald-400 mt-1 text-xs"></i><span>Used file handling systems for reliable, uncorrupted local system binary records storage.</span></li>
                     </ul>
                 </div>
             </div>
@@ -690,71 +336,88 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title"><i class="fa-solid fa-envelope"></i>Send a Message</h2>
-        <div class="contact-form">
-            <form id="contactForm" action="https://formsubmit.co/koonapallicharan7898@gmail.com" method="POST">
-                <input type="hidden" name="_subject" id="_subject" value="New message from portfolio contact form">
-                <input type="hidden" name="_captcha" value="false">
-                
-                <label for="name">Name</label>
-                <input type="text" id="name" name="Name" placeholder="Your name" required>
-
-                <label for="email">Email</label>
-                <input type="email" id="email" name="_replyto" placeholder="Your email" required>
-
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="Subject" placeholder="Subject" required>
-
-                <label for="message">Message</label>
-                <textarea id="message" name="Message" placeholder="Write your message here" required></textarea>
-
-                <div class="contact-actions">
-                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
-                    <a href="mailto:koonapallicharan7898@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Directly</a>
+    <section id="contact" class="max-w-6xl mx-auto px-6 py-20">
+        <div class="grid md:grid-cols-5 gap-12 items-start">
+            
+            <!-- Contact Left Card -->
+            <div class="md:col-span-2 space-y-6">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-3">Let's Connect</h2>
+                    <p class="text-zinc-500 text-sm leading-relaxed">
+                        I am actively looking for software engineering roles to contribute my programming talents and continue growing. Feel free to reach out via direct channels or leave a detailed inquiry.
+                    </p>
                 </div>
-                <p id="formNote" class="form-note"></p>
-            </form>
+                
+                <div class="bg-zinc-900 border border-zinc-800/80 rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-teal-400 border border-zinc-800">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-500 uppercase tracking-wider">Call Me</p>
+                            <a href="tel:+917981813650" class="text-sm font-semibold text-zinc-300 hover:text-teal-400 transition">+91 7981813650</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-teal-400 border border-zinc-800">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-500 uppercase tracking-wider">Email Me</p>
+                            <a href="mailto:koonapallicharan7898@gmail.com" class="text-sm font-semibold text-zinc-300 hover:text-teal-400 transition">koonapallicharan7898@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-teal-400 border border-zinc-800">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-500 uppercase tracking-wider">LinkedIn</p>
+                            <a href="https://linkedin.com" target="_blank" class="text-sm font-semibold text-zinc-300 hover:text-teal-400 transition">Connect on LinkedIn</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-teal-400 border border-zinc-800">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-500 uppercase tracking-wider">GitHub</p>
+                            <a href="https://github.com" target="_blank" class="text-sm font-semibold text-zinc-300 hover:text-teal-400 transition">Follow on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Right Card (Message Form) -->
+            <div class="md:col-span-3 bg-zinc-900 rounded-3xl border border-zinc-800 p-8 shadow-xl">
+                <form action="mailto:koonapallicharan7898@gmail.com" method="POST" enctype="text/plain" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Your Name</label>
+                        <input type="text" name="name" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-teal-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Email Address</label>
+                        <input type="email" name="email" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-teal-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Message</label>
+                        <textarea name="message" rows="4" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-teal-400"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-teal-600 hover:bg-teal-500 text-zinc-950 font-bold py-3 rounded-xl transition shadow-lg shadow-teal-950/50">
+                        Send Message
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Koona Palli Charan. All rights reserved. Refer to charan_Resume.pdf for verification.</p>
+    <footer class="bg-black border-t border-zinc-900 text-zinc-600 text-center py-6 text-xs">
+        <p>&copy; 2026 Koona Palli Charan. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactForm = document.getElementById('contactForm');
-            const formNote = document.getElementById('formNote');
-
-            // 1. Check if the portfolio is opened locally from a folder (file:// protocol)
-            if (window.location.protocol === 'file:') {
-                formNote.style.display = 'block';
-                formNote.textContent = "Notice: Running locally. Submitting this form will open your computer's default email app.";
-            }
-
-            // 2. Intercept submission to ensure fallback works flawlessly
-            contactForm.addEventListener('submit', function(event) {
-                const subjectField = document.getElementById('subject').value || 'Portfolio Contact Form Message';
-                const replyToEmail = document.getElementById('email').value;
-                document.getElementById('_subject').value = subjectField;
-
-                if (window.location.protocol === 'file:') {
-                    event.preventDefault(); // Stop form from trying to post to formsubmit.co over file system
-                    
-                    const name = encodeURIComponent(document.getElementById('name').value);
-                    const email = encodeURIComponent(replyToEmail);
-                    const subject = encodeURIComponent(subjectField);
-                    const message = encodeURIComponent(document.getElementById('message').value);
-                    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ASubject: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-                    
-                    // Route directly via standard mailto app action
-                    window.location.href = `mailto:koonapallicharan7898@gmail.com?subject=${subject}&body=${body}`;
-                }
-                // If protocol is HTTP/HTTPS, FormSubmit receives the hidden _subject value updated above.
-            });
-        });
-    </script>
 </body>
 </html>
